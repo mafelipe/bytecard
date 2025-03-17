@@ -14,7 +14,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,20 +34,18 @@ public class CardServiceImpl {
     private CardStatusMapper cardStatusMapper;
 
 
-    public CardResponse getAllProperties() {
+    public CardResponse getListOfCards() {
         CardResponse response = new CardResponse();
         List<CardDTO> cards = cardRepository.findAll()
                 .stream()
                 .map(cardMapper::toDTO)
                 .collect(Collectors.toList());
-
         if (!cards.isEmpty()) {
             response.setCards(cards);
         }
 
         return response;
     }
-
 
     public void createCard(CardRequest request) {
         if (nonNull(request)) {
@@ -77,7 +74,7 @@ public class CardServiceImpl {
                 .orElse(null));
     }
 
-    public void updateCardStatus(CardDTO request, CardStatus status) {
+    private void updateCardStatus(CardDTO request, CardStatus status) {
         CardDTO dto = getCardById(request.getId());
         if (nonNull(dto)) {
             Card entity = cardMapper.toEntity(dto);
@@ -89,19 +86,5 @@ public class CardServiceImpl {
             }
         }
     }
-
-    public CardResponse getListOfCards() {
-        CardResponse response = new CardResponse();
-        List<CardDTO> dtos = new ArrayList<>();
-        cardRepository.findAll()
-                .forEach(card -> {
-
-                    dtos.add(cardMapper.toDTO(card));
-
-                });
-        response.setCards(dtos);
-        return response;
-    }
-
 
 }

@@ -32,7 +32,7 @@ public class CardController {
 
     @GetMapping("/list")
     public CardResponse getListOfCards() {
-        return cardService.getAllProperties();
+        return cardService.getListOfCards();
     }
 
 }
