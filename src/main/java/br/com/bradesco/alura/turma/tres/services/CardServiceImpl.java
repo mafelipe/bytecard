@@ -9,12 +9,10 @@ import br.com.bradesco.alura.turma.tres.enums.CardStatusEnum;
 import br.com.bradesco.alura.turma.tres.mapper.CardMapper;
 import br.com.bradesco.alura.turma.tres.mapper.CardStatusMapper;
 import br.com.bradesco.alura.turma.tres.repositories.CardRepository;
-import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -89,11 +87,5 @@ public class CardServiceImpl {
                 LOG.error("Error when trying update");
             }
         }
-    }
-
-    @PostConstruct
-    private void test(){
-        Pageable pageable = Pageable.ofSize(10);
-        cardRepository.findCardByStatus(pageable, CardStatusEnum.CANCELLED.entityValue());
     }
 }
