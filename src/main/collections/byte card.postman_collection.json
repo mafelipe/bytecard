@@ -62,7 +62,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"number\": \"41150002312047766\",\n    \"cvv\": \"119\",\n    \"dueDate\": \"03/23\"\n}",
+					"raw": "{\n    \"number\": \"4115000231209877\",\n    \"cvv\": \"119\",\n    \"expirationDate\": \"2025-03-17\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
