@@ -1,6 +1,9 @@
 package br.com.bradesco.alura.turma.tres.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
+
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "CARD", uniqueConstraints = { @UniqueConstraint(columnNames = "NUMERO") })
@@ -12,14 +15,16 @@ public class Card {
     @Column(name = "CARD_UID")
     private Long id;
 
-    @Column(name = "NUMERO")
+    @Column(name = "NUMERO", length = 16)
+    @Size(min = 16, max = 16)
     private String number;
 
-    @Column(name = "CVV")
+    @Column(name = "CVV", length = 3)
+    @Size(min = 3, max = 3)
     private String cvv;
 
-    @Column(name = "VENCIMENTO")
-    private String dueDate;
+    @Column(name = "VENCIMENTO", nullable = false)
+    private LocalDate expirationDate;
 
     @ManyToOne
     @JoinColumn(name = "CARD_STATUS_UID", referencedColumnName = "CARD_STATUS_UID")
@@ -50,12 +55,12 @@ public class Card {
         this.cvv = cvv;
     }
 
-    public String getDueDate() {
-        return dueDate;
+    public LocalDate getExpirationDate() {
+        return expirationDate;
     }
 
-    public void setDueDate(String dueDate) {
-        this.dueDate = dueDate;
+    public void setExpirationDate(LocalDate expirationDate) {
+        this.expirationDate = expirationDate;
     }
 
     public CardStatus getStatus() {

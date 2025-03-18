@@ -4,9 +4,12 @@ import br.com.bradesco.alura.turma.tres.annotation.Card;
 import br.com.bradesco.alura.turma.tres.annotation.CardSerializer;
 import br.com.bradesco.alura.turma.tres.annotation.Cvv;
 import br.com.bradesco.alura.turma.tres.annotation.CvvSerializer;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import java.time.LocalDate;
 
 public class CardDTO {
 
@@ -20,8 +23,9 @@ public class CardDTO {
     @Cvv
     private String cvv;
 
-    @JsonProperty("duedate")
-    private String dueDate;
+    @JsonProperty("expirationdate")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/yyyy")
+    private LocalDate expirationDate;
 
     private CardStatusDTO status;
 
@@ -57,11 +61,11 @@ public class CardDTO {
         this.cvv = cvv;
     }
 
-    public String getDueDate() {
-        return dueDate;
+    public LocalDate getExpirationDate() {
+        return expirationDate;
     }
 
-    public void setDueDate(String dueDate) {
-        this.dueDate = dueDate;
+    public void setExpirationDate(LocalDate expirationDate) {
+        this.expirationDate = expirationDate;
     }
 }

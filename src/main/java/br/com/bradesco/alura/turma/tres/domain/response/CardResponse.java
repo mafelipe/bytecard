@@ -6,7 +6,7 @@ import java.util.List;
 
 public class CardResponse {
 
-    List<CardDTO> cards;
+    private List<CardDTO> cards;
 
     public List<CardDTO> getCards() {
         return cards;

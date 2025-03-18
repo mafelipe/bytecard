@@ -1,15 +1,16 @@
 package br.com.bradesco.alura.turma.tres.domain.request;
 import br.com.bradesco.alura.turma.tres.domain.dto.CardStatusDTO;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class CardRequest {
 
-    public CardRequest(Long id, String number, String cvv, String dueDate, CardStatusDTO cardStatus) {
+    public CardRequest(Long id, String number, String cvv, LocalDate expirationDate, CardStatusDTO cardStatus) {
         this.id = id;
         this.number = number;
         this.cvv = cvv;
-        this.dueDate = dueDate;
+        this.expirationDate = expirationDate;
         this.cardStatus = cardStatus;
     }
 
@@ -19,7 +20,7 @@ public class CardRequest {
 
     private String cvv;
 
-    private String dueDate;
+    private LocalDate expirationDate;
 
     private CardStatusDTO cardStatus;
 
@@ -55,20 +56,22 @@ public class CardRequest {
         this.cvv = cvv;
     }
 
-    public String getDueDate() {
-        return dueDate;
+    public LocalDate getExpirationDate() {
+        return expirationDate;
     }
 
-    public void setDueDate(String dueDate) {
-        this.dueDate = dueDate;
+    public void setExpirationDate(LocalDate expirationDate) {
+        this.expirationDate = expirationDate;
     }
 
     @Override
     public String toString() {
         return "CardRequest{" +
-                "number='" + number + '\'' +
+                "id=" + id +
+                ", number='" + number + '\'' +
                 ", cvv='" + cvv + '\'' +
-                ", dueDate='" + dueDate + '\'' +
+                ", expirationDate=" + expirationDate +
+                ", cardStatus=" + cardStatus +
                 '}';
     }
 
@@ -77,11 +80,11 @@ public class CardRequest {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CardRequest that = (CardRequest) o;
-        return Objects.equals(number, that.number) && Objects.equals(cvv, that.cvv) && Objects.equals(dueDate, that.dueDate);
+        return Objects.equals(number, that.number) && Objects.equals(cvv, that.cvv) && Objects.equals(expirationDate, that.expirationDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(number, cvv, dueDate);
+        return Objects.hash(number, cvv, expirationDate);
     }
 }

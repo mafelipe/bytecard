@@ -9,11 +9,15 @@ import br.com.bradesco.alura.turma.tres.enums.CardStatusEnum;
 import br.com.bradesco.alura.turma.tres.mapper.CardMapper;
 import br.com.bradesco.alura.turma.tres.mapper.CardStatusMapper;
 import br.com.bradesco.alura.turma.tres.repositories.CardRepository;
+import org.hibernate.type.descriptor.DateTimeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -49,6 +53,7 @@ public class CardServiceImpl {
 
     public void createCard(CardRequest request) {
         if (nonNull(request)) {
+
             Card card = cardMapper.fromRequest(request);
             card.setStatus(CardStatusEnum.CANCELLED.entityValue());
             try {
