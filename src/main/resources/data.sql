@@ -1,0 +1,10 @@
+INSERT INTO CARD_STATUS (CARD_STATUS_UID, CARD_STATUS_DESCR) VALUES
+(1, 'Ativo'),
+(2, 'Cancelado'),
+(3, 'Bloqueado');
+
+-- Inserindo os cartões referenciando os status
+INSERT INTO card (CARD_UID, CVV, VENCIMENTO, NUMERO, CARD_STATUS_UID) VALUES
+(1,'111', '2025-03-01', '1234567812345678', 3),
+(2,'872', '2028-02-01', '8765432187654321', 3),
+(3,'672', '2026-05-01', '1111222233334444', 3);
