@@ -6,7 +6,7 @@ public enum CardStatusEnum {
 
     ACTIVE(1L, "CARD ACTIVE"),
     CANCELLED(2L, "CARD STATUS CANCELLED"),
-    EXPIRED(3L, "CARD STATUS EXPIRED");
+    BLOCKED(3L, "CARD STATUS BLOCKED");
 
     private Long id;
     private String description;
