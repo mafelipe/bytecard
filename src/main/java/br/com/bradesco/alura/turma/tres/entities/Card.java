@@ -3,6 +3,7 @@ package br.com.bradesco.alura.turma.tres.entities;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
@@ -30,6 +31,12 @@ public class Card {
     @JoinColumn(name = "CARD_STATUS_UID", referencedColumnName = "CARD_STATUS_UID")
     private CardStatus status;
 
+    @Column(name = "CARD_LIMIT")
+    private BigDecimal limit;
+
+    @ManyToOne
+    @JoinColumn(name = "CLIENT_UID", referencedColumnName = "CLIENT_UID")
+    private Client client;
 
     public Long getId() {
         return id;
@@ -71,4 +78,19 @@ public class Card {
         this.status = status;
     }
 
+    public BigDecimal getLimit() {
+        return limit;
+    }
+
+    public void setLimit(BigDecimal limit) {
+        this.limit = limit;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
 }

@@ -8,17 +8,20 @@ import br.com.bradesco.alura.turma.tres.entities.CardStatus;
 import br.com.bradesco.alura.turma.tres.enums.CardStatusEnum;
 import br.com.bradesco.alura.turma.tres.mapper.CardMapper;
 import br.com.bradesco.alura.turma.tres.mapper.CardStatusMapper;
+import br.com.bradesco.alura.turma.tres.mapper.ClientMapper;
 import br.com.bradesco.alura.turma.tres.repositories.CardRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static java.util.Objects.nonNull;
+import static org.antlr.v4.runtime.tree.xpath.XPath.findAll;
 
 @Service
 public class CardServiceImpl {
@@ -32,21 +35,24 @@ public class CardServiceImpl {
     private CardMapper cardMapper;
 
     @Autowired
+    private ClientMapper clientMapper;
+
+    @Autowired
     private CardStatusMapper cardStatusMapper;
 
-
-    public CardResponse getListOfCards() {
+    public CardResponse getListOfCards(int page, int size) {
         CardResponse response = new CardResponse();
-        List<CardDTO> cards = cardRepository.findAll()
+        List<CardDTO> cards = cardRepository.findAll(PageRequest.of(page, size))
                 .stream()
                 .map(cardMapper::toDTO)
                 .collect(Collectors.toList());
         if (!cards.isEmpty()) {
             response.setCards(cards);
         }
-
         return response;
+
     }
+
 
     public void createCard(CardRequest request) {
         if (nonNull(request)) {

@@ -31,8 +31,10 @@ public class CardController {
     }
 
     @GetMapping("/list")
-    public CardResponse getListOfCards() {
-        return cardService.getListOfCards();
+    public CardResponse getListOfCards(
+            @RequestParam(value = "page", required = false, defaultValue = "0") int page,
+            @RequestParam(value = "size", required = false, defaultValue = "10") int size) {
+        return cardService.getListOfCards(page, size);
     }
 
 }

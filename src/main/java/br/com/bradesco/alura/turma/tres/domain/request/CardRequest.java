@@ -1,8 +1,8 @@
 package br.com.bradesco.alura.turma.tres.domain.request;
 import br.com.bradesco.alura.turma.tres.domain.dto.CardStatusDTO;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Objects;
 
 public class CardRequest {
 
@@ -19,6 +19,8 @@ public class CardRequest {
     private String number;
 
     private String cvv;
+
+    private BigDecimal limit;
 
     private LocalDate expirationDate;
 
@@ -64,27 +66,24 @@ public class CardRequest {
         this.expirationDate = expirationDate;
     }
 
+    public BigDecimal getLimit() {
+        return limit;
+    }
+
+    public void setLimit(BigDecimal limit) {
+        this.limit = limit;
+    }
+
     @Override
     public String toString() {
         return "CardRequest{" +
                 "id=" + id +
                 ", number='" + number + '\'' +
                 ", cvv='" + cvv + '\'' +
+                ", limit=" + limit +
                 ", expirationDate=" + expirationDate +
                 ", cardStatus=" + cardStatus +
                 '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        CardRequest that = (CardRequest) o;
-        return Objects.equals(number, that.number) && Objects.equals(cvv, that.cvv) && Objects.equals(expirationDate, that.expirationDate);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(number, cvv, expirationDate);
-    }
 }
