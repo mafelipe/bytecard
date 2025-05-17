@@ -4,7 +4,6 @@ import br.com.bradesco.alura.turma.tres.domain.dto.CardDTO;
 import br.com.bradesco.alura.turma.tres.domain.request.CardRequest;
 import br.com.bradesco.alura.turma.tres.domain.response.CardResponse;
 import br.com.bradesco.alura.turma.tres.services.CardServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/v1/card")
 public class CardController {
 
-    @Autowired
     private CardServiceImpl cardService;
 
     @PostMapping("/create")
