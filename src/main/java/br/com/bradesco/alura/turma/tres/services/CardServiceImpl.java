@@ -18,10 +18,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
 import static java.util.Objects.nonNull;
-import static org.antlr.v4.runtime.tree.xpath.XPath.findAll;
 
 @Service
 public class CardServiceImpl {
@@ -53,11 +53,11 @@ public class CardServiceImpl {
 
     }
 
-
     public void createCard(CardRequest request) {
         if (nonNull(request)) {
-
             Card card = cardMapper.fromRequest(request);
+            card.setNumber(generateRandomNumber(16));
+            card.setCvv(generateRandomNumber(3));
             card.setStatus(CardStatusEnum.BLOCKED.entityValue());
             try {
                 cardRepository.saveAndFlush(card);
@@ -67,6 +67,14 @@ public class CardServiceImpl {
 
             }
         }
+    }
+
+    private String generateRandomNumber(int size) {
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < size; i++) {
+            builder.append(ThreadLocalRandom.current().nextInt(1, 9));
+        }
+        return builder.toString();
     }
 
     public void unlockCard(CardDTO request) {

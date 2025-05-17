@@ -6,10 +6,11 @@ import java.time.LocalDate;
 
 public class CardRequest {
 
-    public CardRequest(Long id, String number, String cvv, LocalDate expirationDate, CardStatusDTO cardStatus) {
+    public CardRequest(Long id, String number, String cvv, BigDecimal limit, LocalDate expirationDate, CardStatusDTO cardStatus) {
         this.id = id;
         this.number = number;
         this.cvv = cvv;
+        this.limit = limit;
         this.expirationDate = expirationDate;
         this.cardStatus = cardStatus;
     }
